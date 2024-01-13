@@ -1,24 +1,35 @@
-# VBA-challenge
-**Overview of the Project**
-This Project has been undertaken to create a year-on-year stock analysis based on the ticker provided.
-**Its main aim is to create a script that loops through all the stocks for one year and outputs the following information:**
-
- a) The ticker symbol
- b) Yearly change from the opening price at the beginning of a given year to the closing price at the end of that year.
- c) The percentage change from the opening price at the beginning of a given year to the closing price at the end of that year.
- d) The total stock volume of the stock. The result should match the following image:
-
-**It will also give the below-mentioned values as output and will highlight positive change in green and negative change in red.**
-
- "Greatest % increase", "Greatest % decrease", and "Greatest total volume"
- 
-**Output**
-
-
-    ' Declare variable 
+Sub AnalyzeStockData()
+    ' Declare variables
+    Dim Last_Row As Long
+    Dim ws As Worksheet
+    Dim Ticker As String
+    Dim OpeningPrice As Double
+    Dim ClosingPrice As Double
+    Dim YearlyChange As Double
+    Dim PercentageChange As Double
+    Dim TotalStockVolume As Double
+    Dim SummaryTable As Long
+  
+   ' Initialize variables for tracking max/min values for 2nd part of question
+    Dim MaxPercentageIncrease As Double
+    Dim MinPercentageDecrease As Double
+    Dim MaxTotalVolume As Double
+    Dim MaxPercentageIncreaseTicker As String
+    Dim MinPercentageDecreaseTicker As String
+    Dim MaxTotalVolumeTicker As String
+    
+        
    
    ' Loop through all worksheets
-   
+    For Each ws In Worksheets
+        ' Assign column headers
+        ws.Range("I1").Value = "Ticker"
+        ws.Range("J1").Value = "Yearly Change"
+        ws.Range("K1").Value = "Percent Change"
+        ws.Range("L1").Value = "Total Stock Volume"
+        ws.Range("P1").Value = "Ticker"
+        ws.Range("Q1").Value = "Value"
+        
         ' Find the last row with data in column A
         Last_Row = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
         
@@ -101,17 +112,9 @@ This Project has been undertaken to create a year-on-year stock analysis based o
     ws.Cells(4, 17).Value = MaxTotalVolume
     
    Next ws
-
-
-
-
-
-
-
-
-   
    
     
 End Sub
+
 
 
